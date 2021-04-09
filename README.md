@@ -1,6 +1,6 @@
 # overview
 
-message-bus 是一个基于rabbitmq,zookeeper,mysql的消息总线.
+message-bus 是一个基于Spring cloud,vue-element-admin,rabbitmq,zookeeper,mysql的消息总线，定位于消息驱动的微服务架构基础设施。
 先谈谈消息总线跟消息队列的区别，以及对于企业级应用需要将消息队列封装成消息总线的必要性。
 消息总线跟消息队列有何区别？如果有人问你这个问题，你的答案是什么？
 如果你的消息总线是基于一个已经相当成熟的消息队列或者消息系统做二次封装。
@@ -28,8 +28,8 @@ Spring Cloud Stream通过对消息中间件进行抽象封装，提供一个统�
 而Bus则是在Stream基础之上再次进行抽象封装，使得我们可以在不用理解消息发送、监听等概念的基础上使用消息来完成业务逻辑的处理。
 Spring Cloud Stream中，异步调用能让各个服务充分解耦而且也更加灵活。
 而Spring Cloud Bus就是借助消息驱动来实现将消息（事件）广播到各个服务中，然后服务对这些消息进行消费。
-Spring Cloud Bus和Spring Cloud Stream 都是直接连接直接用原始的消息中间件，
-有前述讨论的问题，当然如果有需要消息总线完全可以配合这两者使用
+Spring Cloud Bus和Spring Cloud Stream 以及spring cloud data flow都是直接连接直接用原始的消息中间件，
+有前述讨论的问题，当然如果有需要消息总线完全可以配合使用
 
 消息总线提供的功能及使用场景：
 * 缓冲类——自生产自消费
