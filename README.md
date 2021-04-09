@@ -1,4 +1,4 @@
-#overview
+# overview
 
 message-bus 是一个基于rabbitmq,zookeeper,mysql的消息总线.
 先谈谈消息总线跟消息队列的区别，以及对于企业级应用需要将消息队列封装成消息总线的必要性。
@@ -43,39 +43,49 @@ Spring Cloud Bus和Spring Cloud Stream 都是直接连接直接用原始的消�
 
 应用架构图
 
-<div ><img src="https://github.com/travelersun/message-bus/blob/master/images/architecture.png" width="300" height="450" ><div>
-
 ![img 21][21]
 
 消息路由结构
 
 ![img 22][22]
 
-##web-console 
+## web-console 
 
 
-#overview
+# overview
 消息总线管控台，前后端分离，前端使用vue-element-admin模板构建，后端用Spring boot。用于提供对RabbitMQ的内部信息可视化、消息总线核心实体的管理、消息总线管控指令的下发等功能。
 与此同时它也是一些监控服务的运行容器以及消息总线对外提供服务API的web容器。
 
 
-控制台展示：
+消息总线控制台展示：
+
+![img 1][1]
+
+![img 2][2]
+
+![img 3][3]
+
+![img 4][4]
+
+![img 5][5]
+
+![img 6][6]
+
+![img 7][7]
 
 
+rabbitmq 元数据展示：
 
-队列管理展示：
+![img 10][10]
 
+![img 11][11]
 
+![img 12][12]
 
-rabbitmq管理展示：
-
-
-
-zookeeper元数据展示：
-
+![img 13][13]
 
 
-#Restful API 与消息总线通信的http api
+# Restful API 与消息总线通信的http api
 
 此api是另一个独立的Spring boot应用提供的
 考虑到效率、性能、网络、吞吐量
@@ -108,7 +118,7 @@ zookeeper元数据展示：
 ```
 其中content为字节数组 byte[] 类型,如果需要使用其它数据类型建议先序列化为byte[] , 或者反序列化byte[]为相应的类型
 如 [116,101,115,116] 为 "test" 字符串字节数组
-##produce：
+## produce：
 
 ```
 /messagebus/queues/{qname}/messages?secret={secret}&apiType={produce}&token={token}
@@ -126,6 +136,7 @@ request params :
     * messages - message object list （must）
 
 example
+linux curl 命令需要对&字符进行转义 \&
 
 curl http://localhost:8350/messagebus/queues/oa-consume/messages?secret=8R4hpZ2t1pC4AOOw0KLc\&apiType=produce\&token=8R4hpZ2t1pC4AOOw0KLc -X POST \
 -d 'messages=[{"messageId":0,"type":null,"timestamp":0,"priority":0,"expiration":null,"headers":null,"contentEncoding":null,"contentType":"text/plain","replyTo":null,"appId":null,"userId":null,"clusterId":null,"correlationId":null,"deliveryMode":2,"content":[116,101,115,116]}]' \
@@ -142,7 +153,7 @@ response :
 }
 ```
 
-##consume:
+## consume:
 
 ```
 /messagebus/queues/messages?secret={secret}&apiType={consume}&mode={pull}&num={num}
@@ -201,7 +212,7 @@ response :
 
 ```
 
-##publish:
+## publish:
 
 ```
 /messagebus/queues/messages?secret={secret}&apiType={publish}
@@ -220,6 +231,8 @@ request params :
 
 example 
 
+![img 8][8]
+
 curl http://localhost:8350/messagebus/queues/messages?secret=b7ewDoHijoyH93vTnJcJ\&apiType=publish\&token=b7ewDoHijoyH93vTnJcJ -X POST \
 -d 'messages=[{"messageId":0,"type":null,"timestamp":0,"priority":0,"expiration":null,"headers":null,"contentEncoding":null,"contentType":"text/plain","replyTo":null,"appId":null,"userId":null,"clusterId":null,"correlationId":null,"deliveryMode":2,"content":[116,101,115,116]}]' \
 --header "Content-Type: application/x-www-form-urlencoded"
@@ -236,7 +249,7 @@ response :
 ```
 
 
-##subscribe:
+## subscribe:
 
 ```
 /messagebus/queues/messages?secret={secret}&apiType=subscribe
@@ -253,6 +266,8 @@ request params :
     * message - message object
 
 example
+
+![img 9][9]
 
 curl http://localhost:8350/messagebus/queues/messages?secret=Vi5595g30TAw17RZ58su\&apiType=subscribe
 
@@ -295,7 +310,7 @@ vinoYang. http://vinoyang.com
 消息总线专栏:[消息总线专栏](http://blog.csdn.net/yanghua_kobe/article/category/2898357)
 
 
-##licence
+## licence
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
@@ -304,6 +319,18 @@ http://www.apache.org/licenses/LICENSE-2.0
 ```
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-
-[21]:https://github.com/travelersun/message-bus/blob/ba2112b3dac4c6c198c934cecc251de066d7fcea/images/architecture.png
-[22]:https://github.com/travelersun/message-bus/blob/master/images/architecture.png
+[1]:https://github.com/travelersun/message-bus/blob/master/images/1.png
+[2]:https://github.com/travelersun/message-bus/blob/master/images/2.png
+[3]:https://github.com/travelersun/message-bus/blob/master/images/3.png
+[4]:https://github.com/travelersun/message-bus/blob/master/images/4.png
+[5]:https://github.com/travelersun/message-bus/blob/master/images/5.png
+[6]:https://github.com/travelersun/message-bus/blob/master/images/6.png
+[7]:https://github.com/travelersun/message-bus/blob/master/images/7.png
+[8]:https://github.com/travelersun/message-bus/blob/master/images/8.png
+[9]:https://github.com/travelersun/message-bus/blob/master/images/9.png
+[10]:https://github.com/travelersun/message-bus/blob/master/images/10.png
+[11]:https://github.com/travelersun/message-bus/blob/master/images/11.png
+[12]:https://github.com/travelersun/message-bus/blob/master/images/12.png
+[13]:https://github.com/travelersun/message-bus/blob/master/images/13.png
+[21]:https://github.com/travelersun/message-bus/blob/master/images/architecture.png
+[22]:https://github.com/travelersun/message-bus/blob/master/images/router-topology.png
