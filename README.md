@@ -43,7 +43,13 @@ Spring Cloud Bus和Spring Cloud Stream 都是直接连接直接用原始的消�
 
 应用架构图
 
+<div ><img src="https://github.com/travelersun/message-bus/blob/master/images/architecture.png" width="300" height="450" ><div>
+
+![img 21][21]
+
 消息路由结构
+
+![img 22][22]
 
 ##web-console 
 
@@ -56,7 +62,17 @@ Spring Cloud Bus和Spring Cloud Stream 都是直接连接直接用原始的消�
 控制台展示：
 
 
+
 队列管理展示：
+
+
+
+rabbitmq管理展示：
+
+
+
+zookeeper元数据展示：
+
 
 
 #Restful API 与消息总线通信的http api
@@ -287,3 +303,7 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 http://www.apache.org/licenses/LICENSE-2.0
 ```
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+
+[21]:https://github.com/travelersun/message-bus/blob/ba2112b3dac4c6c198c934cecc251de066d7fcea/images/architecture.png
+[22]:https://github.com/travelersun/message-bus/blob/master/images/architecture.png
